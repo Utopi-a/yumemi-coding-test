@@ -1,4 +1,4 @@
-import { PopulationProcedureOutput } from "@/types";
+import { PopulationProcedureOutput, PrefApiResponse } from "@/types";
 import {
   CartesianGrid,
   Legend,
@@ -11,10 +11,11 @@ import {
 } from "recharts";
 
 type PopulationTrendChartProps = {
+  prefList: PrefApiResponse | undefined;
   populationData: PopulationProcedureOutput | undefined;
 };
 
-export const PopulationTrendChart = ({ populationData }: PopulationTrendChartProps) => {
+export const PopulationTrendChart = ({ prefList, populationData }: PopulationTrendChartProps) => {
   const filteredData = populationData?.map((data) => {
     return {
       ...data,
@@ -53,6 +54,11 @@ export const PopulationTrendChart = ({ populationData }: PopulationTrendChartPro
     return `hsl(${hue}, 70%, 50%)`;
   };
 
+  const getPrefName = (prefCode: string) => {
+    const prefecture = prefList?.find((pref) => pref.prefCode === Number(prefCode));
+    return prefecture ? prefecture.prefName : null;
+  };
+
   return (
     <section>
       {filteredData && filteredData.length > 0 && (
@@ -79,7 +85,7 @@ export const PopulationTrendChart = ({ populationData }: PopulationTrendChartPro
                 <Line
                   type="monotone"
                   dataKey={key}
-                  name={`PrefCode ${key}`}
+                  name={getPrefName(key) ?? key}
                   key={key}
                   stroke={generateColor(index, keys.length)}
                 />

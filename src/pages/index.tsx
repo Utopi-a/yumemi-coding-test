@@ -24,7 +24,7 @@ export default function Home() {
         prefectures={selectedPrefectures}
         setPrefectures={setSelectedPrefectures}
       />
-      <PopulationTrendChart populationData={populationData} />
+      <PopulationTrendChart prefList={prefList} populationData={populationData} />
     </div>
   );
 }

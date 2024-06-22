@@ -1,5 +1,6 @@
 import { PrefApiResponse } from "@/types";
 import { PrefectureCheckBox } from "./PrefectureCheckBox";
+import { ResetPrefecture } from "./ResetPrefecture";
 
 type PrefectureCheckBoxGridProps = {
   prefList: PrefApiResponse | undefined;
@@ -26,18 +27,22 @@ export const PrefectureCheckBoxGrid = ({
 
   return (
     <section>
-      <h2>人口推移を取得したい都道府県を選択してください</h2>
-      <div className="gridPrefCheckbox">
-        {prefList?.map((pref) => {
-          return (
-            <PrefectureCheckBox
-              prefName={pref.prefName}
-              prefCode={String(pref.prefCode)}
-              onChange={handleCheckboxChange}
-              key={pref.prefCode}
-            />
-          );
-        })}
+      <div className="card">
+        <h2>人口推移を取得したい都道府県を選択してください</h2>
+        <div className="gridPrefCheckbox">
+          {prefList?.map((pref) => {
+            return (
+              <PrefectureCheckBox
+                prefName={pref.prefName}
+                prefCode={String(pref.prefCode)}
+                onChange={handleCheckboxChange}
+                key={pref.prefCode}
+                checked={prefectures.includes(String(pref.prefCode))}
+              />
+            );
+          })}
+        </div>
+        <ResetPrefecture setPrefectures={setPrefectures} />
       </div>
     </section>
   );

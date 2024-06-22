@@ -2,10 +2,13 @@ import { Header } from "@/features/components/Header";
 import { PopulationTrendChart } from "@/features/components/PopulationTrendChart/PopulationTrendChart";
 import { PrefectureCheckBoxGrid } from "@/features/components/PrefectureCheckBoxes/PrefectureCheckBoxGrid";
 import { trpc } from "@/utils/trpc";
-import { Inter } from "next/font/google";
+import { Kosugi_Maru } from "next/font/google";
 import { useState } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const kosugi = Kosugi_Maru({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<string[]>([]);
@@ -17,7 +20,7 @@ export default function Home() {
   });
 
   return (
-    <div className="wrapper">
+    <div className={`wrapper ${kosugi.className}`}>
       <Header />
       <PrefectureCheckBoxGrid
         prefList={prefList}

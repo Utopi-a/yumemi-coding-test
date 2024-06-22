@@ -1,11 +1,14 @@
 import { PopulationProcedureOutput, PrefApiResponse } from "@/types";
 
-export const formatData = (populationData: PopulationProcedureOutput | undefined) => {
+export const formatData = (
+  populationData: PopulationProcedureOutput | undefined,
+  selectedPopulationLabel: string,
+) => {
   const filteredData = populationData?.map((data) => {
     return {
       ...data,
       population: data.population
-        .filter((data) => data.label === "総人口")[0]
+        .filter((data) => data.label === selectedPopulationLabel)[0]
         .data.filter((data) => data.year <= 2020),
     };
   });

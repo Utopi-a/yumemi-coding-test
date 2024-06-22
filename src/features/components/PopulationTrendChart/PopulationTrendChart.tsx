@@ -15,8 +15,6 @@ export const PopulationTrendChart = () => {
     .filter((data) => data.label === "総人口")[0]
     .data.filter((data) => data.year <= 2020);
 
-  console.log(showData);
-
   return (
     <section>
       <div className="chart">

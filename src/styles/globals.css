@@ -53,6 +53,7 @@ div.card {
 div.populationSelector {
   margin: 0px 20px;
   font-size: 24px;
+  display: flex;
 }
 
 .populationSelector input {
@@ -62,4 +63,72 @@ div.populationSelector {
 
 .populationSelector label {
   margin-right: 20px;
+}
+
+button.resetButton {
+  margin: 4px 20px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgb(255, 0, 0);
+  color: rgb(251, 241, 252);
+  border: none;
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  h1.header {
+    text-align: center;
+    margin: 0;
+    padding: 16px 10px;
+    color: rgb(58, 18, 0);
+  }
+
+  .prefCheckbox p {
+    font-size: 16px;
+  }
+
+  .prefCheckbox input {
+    transform: scale(1);
+  }
+
+  .gridPrefCheckbox {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .populationSelector label {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+
+  .populationSelector input {
+    transform: scale(1);
+    margin-right: 6px;
+  }
+
+  div.populationSelector {
+    display: flex;
+    flex-direction: column;
+  }
+
+  div.radioItem {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 4px 0px;
+  }
+
+  button.resetButton {
+    margin: 4px 10px;
+    padding: 6px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(255, 0, 0);
+    color: rgb(251, 241, 252);
+    border: none;
+    border-radius: 12px;
+  }
+
+  div.card {
+    padding: 10px;
+  }
 }

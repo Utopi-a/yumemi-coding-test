@@ -5,48 +5,24 @@ type PopulationSwitchRadioProps = {
 export const PopulationSwitchRadio = ({
   setSelectedPopulationLabel,
 }: PopulationSwitchRadioProps) => {
+  const populationType = ["総人口", "年少人口", "生産年齢人口", "老年人口"];
+
   return (
     <div className="populationSelector">
-      <div className="radioItem">
-        <input
-          type="radio"
-          id="populationType1"
-          name="population"
-          value="総人口"
-          onClick={(e) => setSelectedPopulationLabel(e.currentTarget.value)}
-        />
-        <label htmlFor="populationType1">総人口</label>
-      </div>
-      <div className="radioItem">
-        <input
-          type="radio"
-          id="populationType2"
-          name="population"
-          value="年少人口"
-          onClick={(e) => setSelectedPopulationLabel(e.currentTarget.value)}
-        />
-        <label htmlFor="populationType2">年少人口</label>
-      </div>
-      <div className="radioItem">
-        <input
-          type="radio"
-          id="populationType3"
-          name="population"
-          value="生産年齢人口"
-          onClick={(e) => setSelectedPopulationLabel(e.currentTarget.value)}
-        />
-        <label htmlFor="populationType3">生産年齢人口</label>
-      </div>
-      <div className="radioItem">
-        <input
-          type="radio"
-          id="populationType4"
-          name="population"
-          value="老年人口"
-          onClick={(e) => setSelectedPopulationLabel(e.currentTarget.value)}
-        />
-        <label htmlFor="populationType4">老年人口</label>
-      </div>
+      {populationType.map((type, index) => {
+        return (
+          <div className="radioItem" key={index}>
+            <input
+              type="radio"
+              id={`populationType${index}`}
+              name="population"
+              value={type}
+              onClick={(e) => setSelectedPopulationLabel(e.currentTarget.value)}
+            />
+            <label htmlFor={`populationType${index}`}>{type}</label>
+          </div>
+        );
+      })}
     </div>
   );
 };

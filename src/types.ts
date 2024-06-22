@@ -25,4 +25,4 @@ export const populationProcedureSchema = z.array(
   z.object({ prefCode: z.string(), population: PopulationApiResponseSchema }),
 );
 
-export type PopulationProcedure = z.infer<typeof populationProcedureSchema>;
+export type PopulationProcedureOutput = z.infer<typeof populationProcedureSchema>;

@@ -10,9 +10,9 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<string[]>([]);
 
-  const { data } = trpc.getPrefectureList.useQuery();
+  const { data: prefList } = trpc.getPrefectureList.useQuery();
 
-  const { data: test } = trpc.getPopulation.useQuery({
+  const { data: populationData } = trpc.getPopulation.useQuery({
     prefCodes: selectedPrefectures,
   });
 
@@ -20,11 +20,11 @@ export default function Home() {
     <div className="wrapper">
       <Header />
       <PrefectureCheckBoxGrid
-        prefList={data}
+        prefList={prefList}
         prefectures={selectedPrefectures}
         setPrefectures={setSelectedPrefectures}
       />
-      <PopulationTrendChart />
+      <PopulationTrendChart populationData={populationData} />
     </div>
   );
 }

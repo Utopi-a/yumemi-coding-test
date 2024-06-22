@@ -27,7 +27,10 @@ export const PopulationTrendChart = ({ prefList, populationData }: PopulationTre
       {formattedData && formattedData.length > 0 && (
         <div className="card">
           <h2>都道府県別人口推移</h2>
-          <PopulationSwitchRadio setSelectedPopulationLabel={setSelectedPopulationLabel} />
+          <PopulationSwitchRadio
+            selectedPopulationLabel={selectedPopulationLabel}
+            setSelectedPopulationLabel={setSelectedPopulationLabel}
+          />
           <div className="chart">
             <ResponsiveContainer>
               <LineChart

@@ -16,7 +16,11 @@ export const prefectureRouter = router({
       headers: { "X-API-KEY": process.env.RESAS_API_KEY },
     });
 
-    return prefectures.data.result;
+    if (prefectures.data.statusCode === "429") {
+      console.error("API rate limit exceeded. Please try again later.");
+    }
+
+    return prefectures.data;
   }),
 
   getPopulation: procedure

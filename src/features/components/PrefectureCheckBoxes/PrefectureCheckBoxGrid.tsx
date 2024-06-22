@@ -28,7 +28,7 @@ export const PrefectureCheckBoxGrid = ({
     <section>
       <h2>人口推移を取得したい都道府県を選択してください</h2>
       <div className="gridPrefCheckbox">
-        {prefList?.map((pref, index) => {
+        {prefList?.map((pref) => {
           return (
             <PrefectureCheckBox
               prefName={pref.prefName}

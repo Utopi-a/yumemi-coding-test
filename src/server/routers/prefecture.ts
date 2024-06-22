@@ -11,7 +11,7 @@ export const prefectureRouter = router({
       headers: { "X-API-KEY": process.env.RESAS_API_KEY },
     });
 
-    return prefectures.data;
+    return prefectures.data.result;
   }),
 });
 

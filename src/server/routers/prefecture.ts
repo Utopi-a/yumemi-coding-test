@@ -1,4 +1,8 @@
-import { PopulationProcedure, PrefApiResponseSchema, populationProcedureSchema } from "@/types";
+import {
+  PopulationProcedureOutput,
+  PrefApiResponseSchema,
+  populationProcedureSchema,
+} from "@/types";
 import axios from "axios";
 import axiosRetry from "axios-retry";
 import { z } from "zod";
@@ -20,7 +24,7 @@ export const prefectureRouter = router({
     .output(populationProcedureSchema)
     .query(async (input) => {
       const prefCodes = input.input.prefCodes;
-      const populationOfPref: PopulationProcedure = await Promise.all(
+      const populationOfPref: PopulationProcedureOutput = await Promise.all(
         prefCodes.map(async (prefCode) => {
           const population = await axios.get(
             "https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear",

@@ -13,11 +13,12 @@ const kosugi = Kosugi_Maru({
 export default function Home() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<string[]>([]);
 
-  const { data: prefList } = trpc.getPrefectureList.useQuery();
+  const { data: prefList, isFetching: isFetchingPrefList } = trpc.getPrefectureList.useQuery();
 
-  const { data: populationData } = trpc.getPopulation.useQuery({
-    prefCodes: selectedPrefectures,
-  });
+  const { data: populationData, isFetching: isFetchingPopulationData } =
+    trpc.getPopulation.useQuery({
+      prefCodes: selectedPrefectures,
+    });
 
   return (
     <div className={`wrapper ${kosugi.className}`}>
@@ -26,8 +27,13 @@ export default function Home() {
         prefList={prefList}
         prefectures={selectedPrefectures}
         setPrefectures={setSelectedPrefectures}
+        isFetching={isFetchingPrefList}
       />
-      <PopulationTrendChart prefList={prefList} populationData={populationData} />
+      <PopulationTrendChart
+        prefList={prefList}
+        populationData={populationData}
+        isFetching={isFetchingPopulationData}
+      />
     </div>
   );
 }

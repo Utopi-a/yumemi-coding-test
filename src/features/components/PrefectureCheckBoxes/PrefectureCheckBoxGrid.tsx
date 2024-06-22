@@ -17,7 +17,7 @@ export const PrefectureCheckBoxGrid = () => {
   };
 
   return (
-    <>
+    <section>
       <h2>人口推移を取得したい都道府県を選択してください</h2>
       <div className="gridPrefCheckbox">
         <PrefectureCheckBox prefName="北海道" prefCode="1" onChange={handleCheckboxChange} />
@@ -68,6 +68,6 @@ export const PrefectureCheckBoxGrid = () => {
         <PrefectureCheckBox prefName="鹿児島県" prefCode="46" onChange={handleCheckboxChange} />
         <PrefectureCheckBox prefName="沖縄県" prefCode="47" onChange={handleCheckboxChange} />
       </div>
-    </>
+    </section>
   );
 };

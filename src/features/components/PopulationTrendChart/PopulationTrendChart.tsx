@@ -47,9 +47,16 @@ export const PopulationTrendChart = ({ prefList, populationData }: PopulationTre
                   dataKey="year"
                   label={{ value: "年度（西暦）", position: "insideBottomRight", offset: -10 }}
                 />
-                <YAxis label={{ value: "人口数", position: "top", offset: 15 }} />
+                <YAxis label={{ value: "人口数", position: "top", offset: 10 }} />
                 <Tooltip />
-                <Legend layout="horizontal" verticalAlign="top" align="right" />
+                <Legend
+                  layout="horizontal"
+                  verticalAlign="top"
+                  align="right"
+                  wrapperStyle={{
+                    top: 10,
+                  }}
+                />
                 {keys.map((key, index) => (
                   <Line
                     type="monotone"

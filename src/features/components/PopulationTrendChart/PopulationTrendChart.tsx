@@ -28,9 +28,9 @@ export const PopulationTrendChart = ({ prefList, populationData }: PopulationTre
               data={formattedData}
               margin={{
                 top: 30,
-                right: 30,
-                left: 20,
-                bottom: 5,
+                right: 40,
+                left: 40,
+                bottom: 20,
               }}
             >
               <CartesianGrid strokeDasharray="3 3" />

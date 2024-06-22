@@ -8,11 +8,13 @@ import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { data } = trpc.getPrefectureList.useQuery();
-
   const [selectedPrefectures, setSelectedPrefectures] = useState<string[]>([]);
 
-  console.log(data);
+  const { data } = trpc.getPrefectureList.useQuery();
+
+  const { data: test } = trpc.getPopulation.useQuery({
+    prefCodes: selectedPrefectures,
+  });
 
   return (
     <div className="wrapper">

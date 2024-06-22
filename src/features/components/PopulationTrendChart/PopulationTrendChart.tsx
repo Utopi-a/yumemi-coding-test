@@ -29,7 +29,7 @@ export const PopulationTrendChart = ({
 
   return (
     <section>
-      {((formattedData && formattedData.length > 0) || isFetching) && (
+      {((formattedData && formattedData.length > 0) || (isFetching && prefList)) && (
         <div className="card">
           {!isFetching ? (
             <>

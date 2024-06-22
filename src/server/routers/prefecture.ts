@@ -20,7 +20,7 @@ export const prefectureRouter = router({
       console.error("API rate limit exceeded. Please try again later.");
     }
 
-    return prefectures.data;
+    return prefectures.data.result;
   }),
 
   getPopulation: procedure

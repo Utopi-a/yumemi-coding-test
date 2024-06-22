@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { formatData, generateColor, getPrefName } from "./utils";
 
 type PopulationTrendChartProps = {
   prefList: PrefApiResponse | undefined;
@@ -16,52 +17,11 @@ type PopulationTrendChartProps = {
 };
 
 export const PopulationTrendChart = ({ prefList, populationData }: PopulationTrendChartProps) => {
-  const filteredData = populationData?.map((data) => {
-    return {
-      ...data,
-      population: data.population
-        .filter((data) => data.label === "総人口")[0]
-        .data.filter((data) => data.year <= 2020),
-    };
-  });
-
-  const formatData = (data: typeof filteredData) => {
-    const result: Record<string, number>[] = [];
-
-    data?.forEach((pref) => {
-      pref.population.forEach((pop) => {
-        let existingEntry = result.find((entry) => entry.year === pop.year);
-
-        if (!existingEntry) {
-          existingEntry = { year: pop.year };
-          result.push(existingEntry);
-        }
-
-        existingEntry[`${pref.prefCode}`] = pop.value;
-      });
-    });
-
-    return result;
-  };
-
-  const formattedData = formatData(filteredData);
-
-  const keys =
-    formattedData.length > 0 ? Object.keys(formattedData[0]).filter((key) => key !== "year") : [];
-
-  const generateColor = (index: number, total: number) => {
-    const hue = Math.floor((index / total) * 360);
-    return `hsl(${hue}, 70%, 50%)`;
-  };
-
-  const getPrefName = (prefCode: string) => {
-    const prefecture = prefList?.find((pref) => pref.prefCode === Number(prefCode));
-    return prefecture ? prefecture.prefName : null;
-  };
+  const { formattedData, keys } = formatData(populationData);
 
   return (
     <section>
-      {filteredData && filteredData.length > 0 && (
+      {formattedData && formattedData.length > 0 && (
         <div className="chart">
           <ResponsiveContainer>
             <LineChart
@@ -85,7 +45,7 @@ export const PopulationTrendChart = ({ prefList, populationData }: PopulationTre
                 <Line
                   type="monotone"
                   dataKey={key}
-                  name={getPrefName(key) ?? key}
+                  name={getPrefName(prefList, key) ?? key}
                   key={key}
                   stroke={generateColor(index, keys.length)}
                 />

@@ -44,8 +44,8 @@ export const PopulationTrendChart = ({
                     data={formattedData}
                     margin={{
                       top: 30,
-                      right: 40,
-                      left: 40,
+                      right: 10,
+                      left: 10,
                       bottom: 20,
                     }}
                   >

@@ -15,11 +15,10 @@ export default function Home() {
 
   const { data: prefList, isFetching: isFetchingPrefList } = trpc.getPrefectureList.useQuery();
 
-  const { data: populationData, isLoading: isFetchingPopulationData } = trpc.getPopulation.useQuery(
-    {
+  const { data: populationData, isFetching: isFetchingPopulationData } =
+    trpc.getPopulation.useQuery({
       prefCodes: selectedPrefectures,
-    },
-  );
+    });
 
   return (
     <div className={`wrapper ${kosugi.className}`}>
